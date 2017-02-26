@@ -149,7 +149,7 @@ function followCursor()  {
   });
 
   if (cailedXBall > cailedXEnemy-size && cailedXBall < cailedXEnemy+size && cailedYBall > cailedYEnemy-size && cailedYBall < cailedYEnemy+size) {
-    console.log("Game over mate!");
+    location.reload();
   }
 }
 
@@ -186,10 +186,18 @@ function drawEnemy(xEnemy, yEnemy) {
 
 // Purple Foood Mass Boost +10
 function purpleSuperFoodAction() {
-  size = size + 20;
+  size = size + 5;
 }
 
-drawBall(xBall, yBall);
-drawEnemy(0, 0);
-setInterval(followCursor, 5);
-setInterval(addFood, 1000);
+function startNewGame() {
+  drawBall(xBall, yBall);
+  drawEnemy(0, 0);
+  setInterval(followCursor, 5);
+  setInterval(addFood, 1000);
+}
+
+$("#newGame").modal({backdrop: 'static', keyboard: false});
+$("#newGame button").click(function() {
+  startNewGame();
+  $("#newGame").modal("hide");
+});
